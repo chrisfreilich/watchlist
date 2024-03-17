@@ -23,12 +23,13 @@ header {
 }
 h1 {
     color:  rgb(244, 243, 214);
-    text-shadow: 5px 5px rgb(37, 24, 9);
+    text-shadow: 3px 3px 3px #25180977;
+    border: 5px dotted  rgb(251, 247, 178);
+    box-shadow: 3px 3px 3px #25180977;
     font-family: "Luckiest Guy", cursive;
     font-size: 1.3rem;
     letter-spacing: 0.45em;
-    padding: 0.1em 0.3em 0.1em 0.8em; 
-    border: 5px dotted  rgb(251, 247, 178);
+    padding: 0.1em 0.3em 0.1em 0.8em;     
     text-align: center;
     margin: 0;
     width: 100%;
@@ -39,12 +40,15 @@ h2 {
     margin: 0;
     font-size: 1.6rem;
     font-family: "Dancing Script", cursive;
+    text-shadow: 3px 3px 3px #25180977;
 }
 h3 {
     color: white;
     margin: 0;
     font-size: 1rem;
     font-family: "Dancing Script", cursive;
+    padding-right: 0.3em;
+    text-shadow: 3px 3px 3px #25180977;
 }
 
 .header-contents {
@@ -76,16 +80,27 @@ h3 {
     border: none;
     font-family: "Inter", sans-serif;
     font-size: .7rem;
-    padding: .5em 1em;
+    padding: .5em 1em 0.5em 0.8em;
     background-color: #ececec;
     margin: 0;
 }
 
-.search-bar svg {
+.search-bar img {
     border: none;
+    max-width: 30px;
+    filter: invert(100%);
+    margin:0;
 }
 
 .search-bar input {
-    border: none;
-    background-color: transparent;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-top: none;
+    border-bottom: none;
+    background-color: #ececec;
+    margin: 0;
+    padding: 0.5em;
+    flex-grow: 1;
+    font-family: "Inter", sans-serif;
+    font-size: 0.7rem;
 }
