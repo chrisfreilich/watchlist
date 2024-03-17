@@ -7,7 +7,6 @@ html, body {
     padding: 0;
     font-family: "Inter", sans-serif;
     position: relative;
-    min-width: 375px;
 }
 
 header {
@@ -52,8 +51,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1rem;
-    padding-right: 0.3em;
+    font-size: 1.3rem;  
     cursor: pointer;
 }
 h4 {
@@ -64,7 +62,7 @@ h4 {
 }
 
 .header-contents {
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -118,18 +116,20 @@ h4 {
 }
 
 main {
-    margin: 2em 1em;
+    margin: 2.5em 0 0;
     font-size: 0.875rem;
 }
 
 hr {
-    width: 461px;
+    width: 90%;
     border: 1.5px solid lightgray;
     margin: 1rem auto;
     ;
 }
 
 .film-card {
+    width: 90%;
+    margin: 0 auto;
     display: grid;
     height: 150px;
     grid-template-areas: 
@@ -161,7 +161,7 @@ hr {
 
 .film-info-block {
     display: flex;
-    align-items: center;
+    align-items: start;
     flex-wrap: wrap;
     grid-area: info;
     font-size: 0.75rem;
@@ -173,10 +173,15 @@ hr {
     margin: 0.5em 1em 0.5em 0;
 }
 
-.film-info-block p img {
+.film-info-block img {
+    padding-top: 9px;
     filter:invert(100%);
     margin-right: 0.25em;
-    padding-top:5px;
+    cursor: pointer;
+}
+
+.watchlist-btn {
+    cursor: pointer;
 }
 
 .film-plot-block {
