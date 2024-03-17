@@ -48,10 +48,12 @@ h2, h3 {
 
 h2 {
     font-size: 1.6rem;
+    padding-top: 0.25em;
+    border-top: 3px solid white;
 }
 
 h3 {
-    font-size: 1.3rem;  
+    font-size: 1.5rem;  
     cursor: pointer;
 }
 h4 {
@@ -82,6 +84,7 @@ h4 {
     background-color: #F9FAFB;
     border: 1.5px solid lightgray;
     width: 90%;
+    max-width: 600px;
 }
 
 .search-bar button {
@@ -122,6 +125,7 @@ main {
 
 hr {
     width: 90%;
+    max-width: 960px;
     border: 1.5px solid lightgray;
     margin: 1rem auto;
     ;
@@ -129,14 +133,15 @@ hr {
 
 .film-card {
     width: 90%;
+    max-width: 960px;
     margin: 0 auto;
     display: grid;
-    height: 150px;
+    
     grid-template-areas: 
         "pstr .... title"
         "pstr .... info"
         "pstr .... plot";
-    grid-template-rows: 2em 1fr 3.6em;
+    grid-template-rows: auto auto 3.6em;
     grid-template-columns: 100px 20px 1fr;
     overflow: hidden;
 }
@@ -149,6 +154,7 @@ hr {
 
 .film-title-block {
     display: flex;
+    flex-wrap: wrap;
     grid-area: title;
     align-items: baseline;
 }
