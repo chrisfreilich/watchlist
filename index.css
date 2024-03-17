@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: url('images/header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    aspect-ratio: 550 / 208;
+
+}
+h1 {
+    color: whitesmoke;
+}
