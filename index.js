@@ -54,14 +54,18 @@ function processSearchResults(data) {
                     <img class="poster" src="${data.Poster === 'N/A' ? 'images/no-poster.jpg' : data.Poster}" alt="">
                     <div class="film-title-block">
                         <h4>${data.Title}</h4>
-                        <img src="${rtIcon}" alt="${rtRatingAlt}" />
-                        <p>${rtRating}</p>
+                        <div class="rt">
+                            <img src="${rtIcon}" alt="${rtRatingAlt}" />
+                            <p>${rtRating}</p>
+                        </div>
                     </div>
                     <div class="film-info-block">
                         <p class="runtime">${data.Runtime}</p>
                         <p class="genre">${data.Genre}</p>
-                        <img src="/images/plus-icon.png" alt="Button to Add ${data.Title} to Watchlist" />
-                        <p class="watchlist-btn">Watchlist</p>
+                        <div class="watchlist-btn-container" data-id="${id}">    
+                            <img src="/images/plus-icon.png" alt="Button to Add ${data.Title} to Watchlist" />
+                            <p class="watchlist-btn">Watchlist</p>
+                        </div>
                     </div>
                     <div class="film-plot-block">
                         <span>${data.Plot === "N/A" ? "No description available." : data.Plot}</span>

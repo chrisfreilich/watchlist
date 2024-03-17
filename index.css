@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    user-select: none;
 }
 
 html, body {
@@ -136,7 +137,6 @@ hr {
     max-width: 960px;
     margin: 0 auto;
     display: grid;
-    
     grid-template-areas: 
         "pstr .... title"
         "pstr .... info"
@@ -156,7 +156,11 @@ hr {
     display: flex;
     flex-wrap: wrap;
     grid-area: title;
-    align-items: baseline;
+    align-items: center;
+}
+
+.film-title-block .rt {
+    display: flex;
 }
 
 .film-title-block img {
@@ -165,29 +169,43 @@ hr {
     margin-right:5px;
 }
 
+.film-title-block p {
+    margin: 0;
+}
+
 .film-info-block {
     display: flex;
     align-items: start;
+    justify-content: start;
     flex-wrap: wrap;
     grid-area: info;
     font-size: 0.75rem;
     padding: 0;
+    line-height: 1rem;
+    margin: 0.5em 0;
 }
 
 .film-info-block p {
-    padding: 0;
-    margin: 0.5em 1em 0.5em 0;
+    margin: 0 15px 0 0;
 }
 
-.film-info-block img {
-    padding-top: 9px;
+
+.watchlist-btn-container {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.watchlist-btn-container img {
     filter:invert(100%);
     margin-right: 0.25em;
-    cursor: pointer;
+    pointer-events: none;
+    width: 17px;
+    height: 17px;
 }
 
 .watchlist-btn {
-    cursor: pointer;
+    pointer-events: none;
 }
 
 .film-plot-block {
@@ -219,8 +237,9 @@ hr {
     color: #000;
   }
   
+  /* 
   .film-plot-block:focus-within {
     height: auto;
   }
-  
+   */
   
