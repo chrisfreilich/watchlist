@@ -5,6 +5,8 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family: "Inter", sans-serif;
+    position: relative;
 }
 
 header {
@@ -14,8 +16,76 @@ header {
     background-position: center center;
     width: 100%;
     aspect-ratio: 550 / 208;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3rem;
 }
 h1 {
-    color: whitesmoke;
+    color:  rgb(244, 243, 214);
+    text-shadow: 5px 5px rgb(37, 24, 9);
+    font-family: "Luckiest Guy", cursive;
+    font-size: 1.3rem;
+    letter-spacing: 0.45em;
+    padding: 0.1em 0.3em 0.1em 0.8em; 
+    border: 5px dotted  rgb(251, 247, 178);
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+
+h2 {
+    color: white;
+    margin: 0;
+    font-size: 1.6rem;
+    font-family: "Dancing Script", cursive;
+}
+h3 {
+    color: white;
+    margin: 0;
+    font-size: 1rem;
+    font-family: "Dancing Script", cursive;
+}
+
+.header-contents {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+}
+
+.search-bar {
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+    border-radius: 25px;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 10rem;
+    background-color: #F9FAFB;
+    border: 1.5px solid lightgray;
+    width: 90%;
+}
+
+.search-bar button {
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-size: .7rem;
+    padding: .5em 1em;
+    background-color: #ececec;
+    margin: 0;
+}
+
+.search-bar svg {
+    border: none;
+}
+
+.search-bar input {
+    border: none;
+    background-color: transparent;
 }

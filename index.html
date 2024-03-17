@@ -1,14 +1,35 @@
 <html lang="en">
 <head>
+    <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@100..900&family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css">
+    <!-- Page -->
     <title>My Watchlist</title>
 </head>
 <body>
     <header>
         <h1>My Watchlist</h1>
+        <div class="header-contents">
+            <h2>Find a film...</h2>
+            <h3>Go to watchlist</h3>
+        </div>   
     </header>
+    <div class="search-bar">
+        <!-- Search icon -->
+        <svg width="20" height="20" viewBox="0 0 25 25" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <rect width="20" height="20" fill="#1C1C1C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M43.75 31.25C36.8464 31.25 31.25 36.8464 31.25 43.75C31.25 50.6536 36.8464 56.25 43.75 56.25C50.6536 56.25 56.25 50.6536 56.25 43.75C56.25 36.8464 50.6536 31.25 43.75 31.25ZM25 43.75C25 33.3947 33.3947 25 43.75 25C54.1053 25 62.5 33.3947 62.5 43.75C62.5 47.7995 61.2163 51.5491 59.0336 54.6142L74.0847 69.6653C75.3051 70.8857 75.3051 72.8643 74.0847 74.0847C72.8643 75.3051 70.8857 75.3051 69.6653 74.0847L54.6142 59.0336C51.5491 61.2163 47.7995 62.5 43.75 62.5C33.3947 62.5 25 54.1053 25 43.75Z" fill="white"/>
+        </svg>
+            
+        <input type="text" id="search-film-title" />
+        <button id="search-btn">Search</button>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
