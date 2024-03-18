@@ -89,6 +89,7 @@ h4 {
 }
 
 .search-bar {
+    font-size: 1.2rem;
     display: flex;
     overflow: hidden;
     justify-content: space-between;
@@ -105,16 +106,9 @@ h4 {
     max-width: 600px;
 }
 
-#search-title {
-    user-select: all;
-    -moz-user-select: all; /* For Firefox */
-    -webkit-user-select: all; /* For Chrome, Safari, and Opera */
-}
-
 .search-bar button {
     border: none;
     font-family: "Inter", sans-serif;
-    font-size: .7rem;
     padding: .5em 1em 0.5em 0.8em;
     background-color: #ececec;
     margin: 0;
@@ -124,21 +118,24 @@ h4 {
 .search-bar img {
     border: none;
     max-width: 30px;
-    filter: invert(100%);
+    filter: invert(110%);
+    opacity: 60%;
     margin:0;
 }
 
 .search-bar input {
-    border-left: 1px solid lightgray;
+    user-select: all;
+    -moz-user-select: all; /* For Firefox */
+    -webkit-user-select: all; /* For Chrome, Safari, and Opera */
+    border-left: none;
     border-right: 1px solid lightgray;
     border-top: none;
     border-bottom: none;
     background-color: #ececec;
     margin: 0;
-    padding: 0.5em;
+    padding: 0.5em 0;
     flex-grow: 1;
     font-family: "Inter", sans-serif;
-    font-size: 0.7rem;
     outline: none;
 }
 
