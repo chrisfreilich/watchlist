@@ -294,11 +294,7 @@ footer {
     color: whitesmoke;
     padding: .5em .75em;
     border-radius: 50%;
-    border: 1px solid black;
-    font-weight: 800;
+    font-weight: 700;
 }
-/* 
-.paginator-pages {
-    display: flex;
-} */
+
 

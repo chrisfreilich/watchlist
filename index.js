@@ -4,6 +4,7 @@ const searchTitleEl = document.getElementById('search-title')
 const searchBtn = document.getElementById('search-btn')
 
 // Pagination variables
+const paginatorEl = document.getElementById('paginator')
 const pgNextBtn = document.getElementById('paginator-next')
 const pgBackBtn = document.getElementById('paginator-back')
 const pgPageEls = document.getElementsByClassName('paginator-page')
@@ -28,6 +29,17 @@ function doSearch(page = 1, offsetPage = "none") {
 }
 
 function processSearchResults(data, page, offsetPage) {
+
+    // Check for no results
+    if (!data.Search) {
+        document.getElementById('search-results').innerHTML = `
+                <p class="blank-screen-text">No Luck! No Matches!</p>
+                <img src="images/no-results.png" class="blank-screen"/>
+        `
+        paginatorEl.style.display = "none"
+        return
+    }
+
     // The search API only returns essentials of each film, so
     // another API call is necessary for each movie to get the details of the film 
     let html = ""
@@ -112,7 +124,7 @@ function processSearchResults(data, page, offsetPage) {
         }
 
         // set numbers + selected
-        document.getElementById('paginator').style.display = "flex"
+        paginatorEl.style.display = "flex"
         for (let i = 0; i < 5; i++) {
             curPage = currentStartPage + i
             pgPageEls[i].textContent = curPage
@@ -131,7 +143,7 @@ function processSearchResults(data, page, offsetPage) {
         pgBackBtn.style.display = currentResultPages <= 5 ? "none" : "block"
         pgNextBtn.style.display = currentResultPages <= 5 ? "none" : "block"
     } else {
-        document.getElementById('paginator').style.display = "none"
+        paginatorEl.style.display = "none"
     }
 
 }
