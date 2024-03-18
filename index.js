@@ -92,43 +92,47 @@ function processSearchResults(data, page, offsetPage) {
 
     // Paginate based on offset page and page
     currentResultPages = Math.ceil(parseInt(data.totalResults) / 10)    // 10 films returned per request, so making the pages that length.
-    const numPageLinks = Math.min(currentResultPages, 5)                // Display up to 5 page links 
-    let currentStartPage = Number(pgPageEls[0].textContent)
-    switch (offsetPage) {    
-        case "start":
-            currentStartPage = 1
-            break
-        case "back":
-            currentStartPage -= 5
-            break
-        case "next":
-            currentStartPage += 5
-            const remainingPages = currentResultPages - currentStartPage
-            if (remainingPages < 5) numPageLinks = remainingPages
-            break
-        default:
-            break
+    if (currentResultPages > 2) { 
+        const numPageLinks = Math.min(currentResultPages, 5)                // Display up to 5 page links 
+        let currentStartPage = Number(pgPageEls[0].textContent)
+        switch (offsetPage) {    
+            case "start":
+                currentStartPage = 1
+                break
+            case "back":
+                currentStartPage -= 5
+                break
+            case "next":
+                currentStartPage += 5
+                const remainingPages = currentResultPages - currentStartPage
+                if (remainingPages < 5) numPageLinks = remainingPages
+                break
+            default:
+                break
+        }
+
+        // set numbers + selected
+        document.getElementById('paginator').style.display = "flex"
+        for (let i = 0; i < 5; i++) {
+            curPage = currentStartPage + i
+            pgPageEls[i].textContent = curPage
+            pgPageEls[i].style.display = numPageLinks > i  ? "block" : "none"
+            if (page === curPage)
+                pgPageEls[i].classList.add("current")
+            else    
+                pgPageEls[i].classList.remove("current")
+        }
+
+        // Enable/disable next/back
+        pgBackBtn.disabled = (currentStartPage === 1)
+        pgNextBtn.disabled = (currentStartPage + 5 >= currentResultPages)
+
+        // if there are not enough pages to utilize the back/next buttons, hide them
+        pgBackBtn.style.display = currentResultPages <= 5 ? "none" : "block"
+        pgNextBtn.style.display = currentResultPages <= 5 ? "none" : "block"
+    } else {
+        document.getElementById('paginator').style.display = "none"
     }
-
-    // set numbers + selected
-    document.getElementById('paginator').style.display = "flex"
-    for (let i = 0; i < 5; i++) {
-        curPage = currentStartPage + i
-        pgPageEls[i].textContent = curPage
-        pgPageEls[i].style.display = numPageLinks > i  ? "block" : "none"
-        if (page === curPage)
-            pgPageEls[i].classList.add("current")
-        else    
-            pgPageEls[i].classList.remove("current")
-    }
-
-    // Enable/disable next/back
-    pgBackBtn.disabled = (currentStartPage === 1)
-    pgNextBtn.disabled = (currentStartPage + 5 >= currentResultPages)
-
-    // if there are not enough pages to utilize the back/next buttons, hide them
-    // pgBackBtn.style.display = currentResultPages <= 5 ? "none" : "block"
-    // pgNextBtn.style.display = currentResultPages <= 5 ? "none" : "block"
 
 }
 
