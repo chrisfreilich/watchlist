@@ -258,13 +258,14 @@ hr {
   
 /* Pagination */
 footer {
-    font-family: "Luckiest Guy", sans-serif;
     display: none;
+    font-family: "Luckiest Guy", sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
     align-items: center;
     margin: 0 auto 1em auto;
     justify-content: space-around;
     width: 90%;
-    font-size: 1.5rem;
 }
 
 .paginator-page,
@@ -276,11 +277,10 @@ footer {
     background-color: transparent;
 }
 
-.paginator-next,
-.paginator-back {
-   font-weight: 900; 
+footer .paginator-next,
+footer .paginator-back {
+   font-weight: 900;
    font-size: x-large;
-
 }
 
 /* Don't change display property so that the layout doesn't change */
@@ -292,9 +292,8 @@ footer {
 .paginator-page.current {
     background-color:#006b70;
     color: whitesmoke;
-    padding: .5em .75em;
+    padding: .3em .45em .3em .55em;
     border-radius: 50%;
-    font-weight: 700;
 }
 
 

@@ -1,25 +1,25 @@
+//--- Variable Declarations ---//
 const headerEl = document.getElementById('header')
 const searchBarEl = document.getElementById('search-bar')
 const searchTitleEl = document.getElementById('search-title')
 const searchBtn = document.getElementById('search-btn')
-
-// Pagination variables
 const paginatorEl = document.getElementById('paginator')
 const pgNextBtn = document.getElementById('paginator-next')
 const pgBackBtn = document.getElementById('paginator-back')
 const pgPageEls = document.getElementsByClassName('paginator-page')
 let pgResultPages = 0
 
-// Keep the search bar locked in place.
+//--- Place the search bar (placement is down to the pixel of screen size, so no media query). ---//
 searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2)
-window.addEventListener('resize', handleWindowResize)
 
-// Search
-searchBarEl.addEventListener('submit', (e) => {
+//--- Event handlers ---//
+window.addEventListener('resize', handleWindowResize)   // UI responds to any resize
+searchBarEl.addEventListener('submit', (e) => {         // Search form submit
     e.preventDefault()
-    doSearch(1, "start")
-})
+    doSearch(1, "start")})
+paginatorEl.addEventListener('click', handlePaginatorClick) // Paginator action
 
+//--- Functions ---/
 function doSearch(page = 1, offsetPage = "none") {
     const searchString = searchTitleEl.value.trim()
     if (!searchString) return
@@ -29,6 +29,9 @@ function doSearch(page = 1, offsetPage = "none") {
 }
 
 function processSearchResults(data, page, offsetPage) {
+
+    // Scroll to the top
+    window.scrollTo({top: 0, behavior: 'smooth'});
 
     // Check for no results
     if (!data.Search) {
@@ -102,10 +105,10 @@ function processSearchResults(data, page, offsetPage) {
         })
     }
 
-    // Paginate based on offset page and page
+    // Paginator
     currentResultPages = Math.ceil(parseInt(data.totalResults) / 10)    // 10 films returned per request, so making the pages that length.
-    if (currentResultPages > 2) { 
-        const numPageLinks = Math.min(currentResultPages, 5)                // Display up to 5 page links 
+    if (currentResultPages > 1) { 
+        let numPageLinks = Math.min(currentResultPages, 5)            // Display up to 5 page links 
         let currentStartPage = Number(pgPageEls[0].textContent)
         switch (offsetPage) {    
             case "start":
@@ -116,7 +119,7 @@ function processSearchResults(data, page, offsetPage) {
                 break
             case "next":
                 currentStartPage += 5
-                const remainingPages = currentResultPages - currentStartPage
+                const remainingPages = currentResultPages - (currentStartPage - 1)
                 if (remainingPages < 5) numPageLinks = remainingPages
                 break
             default:
@@ -126,10 +129,10 @@ function processSearchResults(data, page, offsetPage) {
         // set numbers + selected
         paginatorEl.style.display = "flex"
         for (let i = 0; i < 5; i++) {
-            curPage = currentStartPage + i
+            const curPage = currentStartPage + i
             pgPageEls[i].textContent = curPage
             pgPageEls[i].style.display = numPageLinks > i  ? "block" : "none"
-            if (page === curPage)
+            if (page == curPage)
                 pgPageEls[i].classList.add("current")
             else    
                 pgPageEls[i].classList.remove("current")
@@ -165,4 +168,16 @@ function revealFullPlot(event) {
     event.target.style.display = "none"
     const card = document.getElementById(event.target.dataset.id)
     card.style.gridTemplateRows =  "auto auto auto"
+}
+
+function handlePaginatorClick(e) {
+    if (e.target.classList.contains('paginator-page')) {
+        doSearch(e.target.innerText)
+    } else if (e.target.classList.contains('paginator-back')) {
+        doSearch(Number(pgPageEls[0].innerHTML) - 1, "back")
+    } else if (e.target.classList.contains('paginator-next')) {
+        doSearch(Number(pgPageEls[4].innerHTML) + 1, "next")
+    } else {
+        return
+    }
 }
