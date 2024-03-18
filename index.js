@@ -10,12 +10,16 @@ window.addEventListener('resize', handleWindowResize)
 // Search
 searchBarEl.addEventListener('submit', (e) => {
     e.preventDefault()
+   doSearch()
+})
+
+function doSearch(page = 1) {
     const searchString = searchTitleEl.value.trim()
     if (!searchString) return
-    fetch(`http://www.omdbapi.com/?s=${searchString}&apikey=88ae5a67`)
+    fetch(`http://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=88ae5a67`)
         .then( res => res.json() )
         .then( data => processSearchResults(data))
-})
+}
 
 function processSearchResults(data) {
     let html = ""
