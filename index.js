@@ -5,7 +5,7 @@ const searchBtn = document.getElementById('search-btn')
 
 // Keep the search bar locked in place.
 searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2)
-window.addEventListener('resize', ()=>searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2))
+window.addEventListener('resize', handleWindowResize)
 
 // Search
 searchBarEl.addEventListener('submit', (e) => {
@@ -67,12 +67,27 @@ function processSearchResults(data) {
                             <p class="watchlist-btn">Watchlist</p>
                         </div>
                     </div>
-                    <div class="film-plot-block">
+                    <div class="film-plot-block" data-id="${id}">
                         <span>${data.Plot === "N/A" ? "No description available." : data.Plot}</span>
-                        <a href="#">(show more)</a>
+                        <a href="#" class="show-more" data-id="${id}">(show more)</a>
                     </div>           
             `
+            // Set show more visibility
+            const plot = document.querySelectorAll(`.film-plot-block[data-id=${id}]`)[0]
+            const link = document.querySelectorAll(`.show-more[data-id=${id}]`)[0]
+            link.style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
         })
     }
+}
 
+function updateShowMoreLinks() {    
+    for (const plot of document.getElementsByClassName('film-plot-block')) {
+        const link = document.querySelectorAll(`.show-more[data-id=${plot.dataset.id}]`)[0]
+        link.style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
+    }
+}
+
+function handleWindowResize() {
+    searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2)
+    updateShowMoreLinks()
 }

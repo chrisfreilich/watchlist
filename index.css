@@ -223,8 +223,8 @@ hr {
     filter:invert(100%);
     margin-right: 0.25em;
     pointer-events: none;
-    width: 17px;
-    height: 17px;
+    width: 19px;
+    height: 19px;
 }
 
 .watchlist-btn {
