@@ -72,9 +72,10 @@ function processSearchResults(data) {
                         <a href="#" class="show-more" data-id="${id}">(show more)</a>
                     </div>           
             `
-            // Set show more visibility
+            // Set (show more) visibility
             const plot = document.querySelectorAll(`.film-plot-block[data-id=${id}]`)[0]
             const link = document.querySelectorAll(`.show-more[data-id=${id}]`)[0]
+            link.addEventListener('click', revealFullPlot)
             link.style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
         })
     }
@@ -90,4 +91,11 @@ function updateShowMoreLinks() {
 function handleWindowResize() {
     searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2)
     updateShowMoreLinks()
+}
+
+function revealFullPlot(event) {
+    event.preventDefault()
+    event.target.style.display = "none"
+    const card = document.getElementById(event.target.dataset.id)
+    card.style.gridTemplateRows =  "auto auto auto"
 }
