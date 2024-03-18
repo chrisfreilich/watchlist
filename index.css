@@ -209,7 +209,6 @@ hr {
     margin: 0 15px 0 0;
 }
 
-
 .watchlist-btn-container {
     display: flex;
     cursor: pointer;
@@ -259,19 +258,21 @@ hr {
   
 /* Pagination */
 footer {
-    display: flex;
+    display: none;
     align-items: baseline;
+    margin: 0 0 1em 0;
 }
 .paginator-page,
 .paginator-next,
 .paginator-back {
-    margin: 0 0.2rem;
+    margin: 0 1rem;
     border: 2px solid black;
     border-radius: 50%;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
     font-size: 1rem;
-    text-align: center;    
+    text-align: center; 
+    cursor: pointer;   
 }
 .paginator-next,
 .paginator-back {
@@ -293,4 +294,12 @@ footer {
 }
 .paginator-next {
     margin-right: auto;
+}
+
+.paginator-back:disabled {
+    opacity: 0%;
+    cursor: not-allowed;
+}
+.paginator-next:disabled {
+    opacity: 0%;
 }

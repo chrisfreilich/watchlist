@@ -3,6 +3,12 @@ const searchBarEl = document.getElementById('search-bar')
 const searchTitleEl = document.getElementById('search-title')
 const searchBtn = document.getElementById('search-btn')
 
+// Pagination variables
+const pgNextBtn = document.getElementById('paginator-next')
+const pgBackBtn = document.getElementById('paginator-back')
+const pgPageEls = document.getElementsByClassName('paginator-page')
+let pgResultPages = 0
+
 // Keep the search bar locked in place.
 searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight/2)
 window.addEventListener('resize', handleWindowResize)
@@ -10,29 +16,29 @@ window.addEventListener('resize', handleWindowResize)
 // Search
 searchBarEl.addEventListener('submit', (e) => {
     e.preventDefault()
-   doSearch()
+    doSearch(1, "start")
 })
 
-function doSearch(page = 1) {
+function doSearch(page = 1, offsetPage = "none") {
     const searchString = searchTitleEl.value.trim()
     if (!searchString) return
     fetch(`http://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=88ae5a67`)
         .then( res => res.json() )
-        .then( data => processSearchResults(data))
+        .then( data => processSearchResults(data, page, offsetPage))
 }
 
-function processSearchResults(data) {
+function processSearchResults(data, page, offsetPage) {
+    // The search API only returns essentials of each film, so
+    // another API call is necessary for each movie to get the details of the film 
     let html = ""
     let filmIDs = []
-    for ( const film of data.Search) {
-        // In this function, add the elements, but we're going to need to do
-        // another API for each movie to get the details of the film (kind of weird design of the API, methinks!)
+    for (const film of data.Search) {
         html += `<div class='film-card' id=${film.imdbID}></div><hr>`
         filmIDs.push(film.imdbID)
     }
     document.getElementById('search-results').innerHTML = html
 
-    // Now that we have the elements in place, we can call the API to fill in the data
+    // Now that we have the HTML elements in place for each film, we can call the API to fill in the data
     for (const id of filmIDs) {
         fetch(`https://www.omdbapi.com/?i=${id}&plot=full&apikey=88ae5a67`)
         .then( res => res.json() )
@@ -83,6 +89,47 @@ function processSearchResults(data) {
             link.style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
         })
     }
+
+    // Paginate based on offset page and page
+    currentResultPages = Math.ceil(parseInt(data.totalResults) / 10)    // 10 films returned per request, so making the pages that length.
+    const numPageLinks = Math.min(currentResultPages, 5)                // Display up to 5 page links 
+    let currentStartPage = Number(pgPageEls[0].textContent)
+    switch (offsetPage) {    
+        case "start":
+            currentStartPage = 1
+            break
+        case "back":
+            currentStartPage -= 5
+            break
+        case "next":
+            currentStartPage += 5
+            const remainingPages = currentResultPages - currentStartPage
+            if (remainingPages < 5) numPageLinks = remainingPages
+            break
+        default:
+            break
+    }
+
+    // set numbers + selected
+    document.getElementById('paginator').style.display = "flex"
+    for (let i = 0; i < 5; i++) {
+        curPage = currentStartPage + i
+        pgPageEls[i].textContent = curPage
+        pgPageEls[i].style.display = numPageLinks > i  ? "block" : "none"
+        if (page === curPage)
+            pgPageEls[i].classList.add("current")
+        else    
+            pgPageEls[i].classList.remove("current")
+    }
+
+    // Enable/disable next/back
+    pgBackBtn.disabled = (currentStartPage === 1)
+    pgNextBtn.disabled = (currentStartPage + 5 >= currentResultPages)
+
+    // if there are not enough pages to utilize the back/next buttons, hide them
+    // pgBackBtn.style.display = currentResultPages <= 5 ? "none" : "block"
+    // pgNextBtn.style.display = currentResultPages <= 5 ? "none" : "block"
+
 }
 
 function updateShowMoreLinks() {    
