@@ -12,26 +12,22 @@
         rel="stylesheet">
     <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="watchlist.css">
     <!-- Page -->
-    <title>My Watchlist - Film Search</title>
+    <title>My Watchlist</title>
 </head>
 
 <body>
     <header id="header">
         <h1>My Watchlist</h1>
         <div class="header-contents">
-            <h3><a href="watchlist.html">Go to watchlist >></a></h3>
+            <h3><a href="index.html"><< Add more films</a></h3>
         </div>
         <div></div>
     </header>
-    <form class="search-bar" id="search-bar">
-        <img src="images/icon-3.png" alt="magnifying glass icon">
-        <input type="text" id="search-title" placeholder="Search for a movie" />
-        <button id="search-btn">Search</button>
-    </form>
     <main id="search-results">
         <img src="images/find-a-film.png" class="blank-screen" />
-        <p class="blank-screen-text">Let's find some films!</p>
+        <p class="blank-screen-text">Your watchlist is empty. Go <a href="index.html">find some films</a>!</p>
     </main>
     <footer id="paginator">
         <button id="paginator-back" class="paginator-back"><</button>
@@ -44,7 +40,7 @@
                 <!-- </div> -->
                 <button id="paginator-next" class="paginator-next">></button>
     </footer>
-    <script src="index.js" type="module"></script>
+    <script src="watchlist.js" type="module"></script>
 </body>
 
 </html>

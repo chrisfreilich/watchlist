@@ -4,17 +4,17 @@ export const paginatorEl = document.getElementById('paginator')
 const pgNextBtn = document.getElementById('paginator-next')
 const pgBackBtn = document.getElementById('paginator-back')
 
-export function renderFilmList(data, page, offsetPage) {
+export function renderFilmList(data, page, offsetPage, scroll, noResultText, noResultLogo) {
 
     // Scroll to the top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Check for no results
-    if (!data.Search) {
+    if (!data.Search || data.Search.length === 0) {
         document.getElementById('search-results').innerHTML = `
-                <p class="blank-screen-text">No Luck! No Matches!</p>
-                <img src="images/no-results.png" class="blank-screen"/>
-        `
+                <img src=${noResultLogo} class="blank-screen"/>
+                <p class="blank-screen-text">${noResultText}</p>
+            `
         paginatorEl.style.display = "none"
         return
     }

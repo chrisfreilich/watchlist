@@ -25,7 +25,7 @@ body {
     font-size: 3rem;
     color: #425a59;
     opacity: 35%;
-    margin: 18vw auto 0;
+    margin: 5vw auto 0;
     display: block;
     width: 80%;
     text-align: center;
@@ -62,6 +62,14 @@ h2 {
 
 h3 {
     font-size: 2rem;
+}
+
+h3 a:link,
+h3 a:visited,
+h3 a:hover
+h3 a:active {
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
 }
 
@@ -383,7 +391,11 @@ footer .paginator-back {
     }
     header {
         aspect-ratio: 550 / 80;
-    }    
+    }   
+    .blank-screen-text {
+        margin: 1vw auto 0;
+        font-size: 4rem;
+    } 
 }
 
 @media (min-width: 1600px) {
