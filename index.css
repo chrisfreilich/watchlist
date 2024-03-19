@@ -350,7 +350,7 @@ footer .paginator-back {
     }
 }
 
-@media (min-width: 670px) {
+@media (min-width: 650px) {
     h1 {
         font-size: 2.1rem;
         border: 7.5px dotted rgb(251, 247, 178);
