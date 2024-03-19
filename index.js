@@ -23,7 +23,7 @@ searchBarEl.addEventListener('submit', (e) => {             // Search form submi
 function doSearch(page = 1, offsetPage = "none") {
     const searchString = searchTitleEl.value.trim()
     if (!searchString) return
-    fetch(`http://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=88ae5a67`)
+    fetch(`https://www.omdbapi.com/?s=${searchString}&page=${page}&apikey=88ae5a67`)
         .then(res => res.json())
         .then(data => renderFilmList(data, page, offsetPage, true, "No Luck! No Matches!", "images/no-results.png"))
 }
