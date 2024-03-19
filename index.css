@@ -277,6 +277,7 @@ footer {
     margin: 0 auto 1em auto;
     justify-content: space-around;
     width: 90%;
+    max-width: 960px;
 }
 
 .paginator-page,
@@ -294,11 +295,9 @@ footer .paginator-back {
     font-size: x-large;
 }
 
-/* Don't do display = "none" so 
-that the layout doesn't change */
 .paginator-back:disabled,
 .paginator-next:disabled {
-    opacity: 0%;
+    opacity: 30%;
 }
 
 .paginator-page.current {
@@ -351,16 +350,14 @@ that the layout doesn't change */
     }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 670px) {
     h1 {
-        font-size: 3rem;
-        border: 10px dotted rgb(251, 247, 178);
+        font-size: 2.1rem;
+        border: 7.5px dotted rgb(251, 247, 178);
     }
-    h3 {
-        font-size: 2.5rem;
-    }
+
     header {
-        aspect-ratio: 550 / 80;
+        aspect-ratio: 550 / 144;
     }    
     .blank-screen-text {
         margin: 6vw auto 0;
@@ -373,5 +370,34 @@ that the layout doesn't change */
     }
     main {
         font-size:1rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    h1 {
+        font-size: 3rem;
+        border: 10px dotted rgb(251, 247, 178);
+    }
+    h3 {
+        font-size: 2.5rem;
+    }
+    header {
+        aspect-ratio: 550 / 80;
+    }    
+}
+
+@media (min-width: 1921px) {
+    h1 {
+        font-size: 3rem;
+        border: 10px dotted rgb(251, 247, 178);
+    }
+    h3 {
+        font-size: 3rem;
+    }
+    header {
+        aspect-ratio: 550 / 55;
+    }    
+    .blank-screen {
+        width: 30%;
     }
 }
