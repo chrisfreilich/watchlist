@@ -18,7 +18,6 @@ function doSearch(page = 1, offsetPage = "none", scroll = true) {
     const  keyArray =  Object.keys(localStorage)
     const  startIndex = (page - 1) * 10 // 10 items per page
     const endIndex = startIndex + 9 > keyArray.length - 1 ? keyArray.length - 1 : startIndex + 9
-    // for (const key of Object.keys(localStorage)) {
     for (let i = startIndex; i <= endIndex; i++) {
         searchArray.push({imdbID: keyArray[i]})
     } 
@@ -28,7 +27,7 @@ function doSearch(page = 1, offsetPage = "none", scroll = true) {
     }
 
     renderFilmList(data, page, offsetPage, scroll, `Your watchlist is empty. Go <a href="index.html">find some films</a>!`, 'images/empty.png')
-    currentPage = page
+    currentPage = Number(page)
 }
 
 function handleWindowResize() {
@@ -47,14 +46,17 @@ function handlePaginatorClick(e) {
 
 function handleResultsClick(e) {
     if (e.target.classList.contains('watchlist-btn-container')) {
+
+            const listLength = Object.keys(localStorage).length
             // Remove from watchlist and rerender
             localStorage.removeItem(e.target.dataset.id)
 
-            // Edge case, user removed last item on watchlist,
-            // that item was the only item on the page, and
-            // it wasn't the only page. In this case, we need to back
-            // up the page
-            if (currentPage != 1 && currentPage === Math.ceil(Object.keys(localStorage).length / 10) && Object.keys(localStorage).length % 10 === 1 ){
+            // Edge case,
+            // (a) user removed last item on the watchlist,
+            // (b) that item was the only item on the page, and
+            // (c) it wasn't the only page. 
+            // In this case, we need to back up one page
+            if (currentPage != 1 && currentPage === Math.ceil(listLength / 10) && listLength % 10 === 1 ){
                 doSearch(currentPage - 1, "back", false)
             }
 
