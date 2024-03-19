@@ -8,19 +8,18 @@ const paginatorEl = document.getElementById('paginator')
 const pgNextBtn = document.getElementById('paginator-next')
 const pgBackBtn = document.getElementById('paginator-back')
 const pgPageEls = document.getElementsByClassName('paginator-page')
-//let pgResultPages = 0
 
 //--- Place the search bar (placement is down to the pixel of screen size, so no media query). ---//
 searchBarEl.style.top = headerEl.offsetHeight - (searchBarEl.offsetHeight / 2)
 
 //--- Event handlers ---//
-window.addEventListener('resize', handleWindowResize)   // UI responds to any resize
-searchBarEl.addEventListener('submit', (e) => {         // Search form submit
+window.addEventListener('resize', handleWindowResize)       // UI responds to any resize
+paginatorEl.addEventListener('click', handlePaginatorClick) // Paginator action
+resultsEl.addEventListener('click', handleResultsClick)     // Add/Remove from Watchlist
+searchBarEl.addEventListener('submit', (e) => {             // Search form submit
     e.preventDefault()
     doSearch(1, "start")
 })
-paginatorEl.addEventListener('click', handlePaginatorClick) // Paginator action
-resultsEl.addEventListener('click', handleResultsClick)     // Add/Remove from Watchlist
 
 //--- Functions ---/
 function doSearch(page = 1, offsetPage = "none") {
@@ -130,8 +129,6 @@ function processSearchResults(data, page, offsetPage) {
                 const remainingPages = currentResultPages - (currentStartPage - 1)
                 if (remainingPages < 5) numPageLinks = remainingPages
                 break
-            default:
-                break
         }
 
         // set numbers + selected
@@ -174,8 +171,7 @@ function handleWindowResize() {
 function revealFullPlot(event) {
     event.preventDefault()
     event.target.style.display = "none"
-    const card = document.getElementById(event.target.dataset.id)
-    card.style.gridTemplateRows = "auto auto auto"
+    document.getElementById(event.target.dataset.id).style.gridTemplateRows = "auto auto auto"
 }
 
 function handlePaginatorClick(e) {
@@ -185,9 +181,7 @@ function handlePaginatorClick(e) {
         doSearch(Number(pgPageEls[0].innerHTML) - 1, "back")
     } else if (e.target.classList.contains('paginator-next')) {
         doSearch(Number(pgPageEls[4].innerHTML) + 1, "next")
-    } else {
-        return
-    }
+    } 
 }
 
 function handleResultsClick(e) {

@@ -12,40 +12,26 @@ body {
     position: relative;
 }
 
+/* blank screen image and text */
 .blank-screen {
-    width: 60%;
-    opacity: 15%;
-    margin: 40px auto;
+    width: 40%;
+    opacity: 35%;
+    margin: 0px auto;
     display: block;
 }
 
 .blank-screen-text {
     font-family: "Dancing Script", cursive;
     font-size: 3rem;
-    color: #000;
-    opacity: 15%;
+    color: #425a59;
+    opacity: 35%;
     margin: 18vw auto 0;
     display: block;
     width: 80%;
     text-align: center;
 }
 
-header {
-    background-image: url('images/header.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-color: black;
-    width: 100%;
-    aspect-ratio: 550 / 208;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.3rem;
-    position: relative;
-}
-
+/* --- Typography ---*/
 h1 {
     color: rgb(244, 243, 214);
     text-shadow: 3px 3px 3px #25180977;
@@ -64,7 +50,6 @@ h2,
 h3 {
     color: white;
     margin: 0;
-
     font-family: "Dancing Script", cursive;
     text-shadow: 3px 3px 3px #25180977;
 }
@@ -76,7 +61,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
@@ -87,13 +72,31 @@ h4 {
     padding: 0;
 }
 
-.header-contents {
-    width: 90%;
+/*--- Header ---*/
+header {
+    background-image: url('images/header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: black;
+    width: 100%;
+    aspect-ratio: 550 / 208;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
+    padding: 1rem;
+    position: relative;
+}
+
+.header-contents {
+    width: 100%;
+    display: flex;
+    justify-content: end;
     align-items: baseline;
 }
 
+/*--- Search Bar ---*/
 .search-bar {
     font-size: 1.2rem;
     display: flex;
@@ -141,14 +144,15 @@ h4 {
     border-bottom: none;
     background-color: #ececec;
     margin: 0;
-    padding: 0.5em 0;
+    padding: 0.5em 0.5em;
     flex-grow: 1;
     font-family: "Inter", sans-serif;
     outline: none;
 }
 
+/*--- Main film listing ---*/
 main {
-    margin: 2.5em 0 0 0;
+    margin: 3em 0 0 0;
     font-size: 0.875rem;
 }
 
@@ -157,7 +161,6 @@ hr {
     max-width: 960px;
     border: 1.5px solid lightgray;
     margin: 1rem auto;
-    ;
 }
 
 .film-card {
@@ -243,7 +246,7 @@ hr {
     background-color: white;
 }
 
-/* Show more */
+/*--- Show more ---*/
 .film-plot-block a {
     font-size: 0.75rem;
     position: absolute;
@@ -264,7 +267,7 @@ hr {
     color: #000;
 }
 
-/* Pagination */
+/*--- Pagination ---*/
 footer {
     display: none;
     font-family: "Luckiest Guy", sans-serif;
@@ -291,7 +294,8 @@ footer .paginator-back {
     font-size: x-large;
 }
 
-/* Don't do display = "none" so that the layout doesn't change */
+/* Don't do display = "none" so 
+that the layout doesn't change */
 .paginator-back:disabled,
 .paginator-next:disabled {
     opacity: 0%;
@@ -304,6 +308,7 @@ footer .paginator-back {
     border-radius: 50%;
 }
 
+/*------------- Media Queries ---------------*/
 @media (max-width: 429px) {
     h2 {
         display: none;
@@ -343,5 +348,30 @@ footer .paginator-back {
 
     .film-title-block p {
         font-size: 0.75em;
+    }
+}
+
+@media (min-width: 1280px) {
+    h1 {
+        font-size: 3rem;
+        border: 10px dotted rgb(251, 247, 178);
+    }
+    h3 {
+        font-size: 2.5rem;
+    }
+    header {
+        aspect-ratio: 550 / 80;
+    }    
+    .blank-screen-text {
+        margin: 6vw auto 0;
+    }   
+    .search-bar input {
+        font-size: 1.2rem;
+    }
+    .search-bar button {
+        font-size: 1.2rem;
+    }
+    main {
+        font-size:1rem;
     }
 }
