@@ -3,10 +3,12 @@
     user-select: none;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
+    color: rgb(24, 25, 26);
     position: relative;
 }
 
@@ -16,14 +18,15 @@ html, body {
     margin: 40px auto;
     display: block;
 }
+
 .blank-screen-text {
     font-family: "Dancing Script", cursive;
     font-size: 3rem;
-    color:#000;
+    color: #000;
     opacity: 15%;
     margin: 18vw auto 0;
     display: block;
-    width:80%;
+    width: 80%;
     text-align: center;
 }
 
@@ -42,24 +45,26 @@ header {
     padding: 0.3rem;
     position: relative;
 }
+
 h1 {
-    color:  rgb(244, 243, 214);
+    color: rgb(244, 243, 214);
     text-shadow: 3px 3px 3px #25180977;
-    border: 5px dotted  rgb(251, 247, 178);
+    border: 5px dotted rgb(251, 247, 178);
     box-shadow: 3px 3px 3px #25180977;
     font-family: "Luckiest Guy", cursive;
     font-size: 1.3rem;
     letter-spacing: 0.45em;
-    padding: 0.1em 0.3em 0.1em 0.8em;     
+    padding: 0.1em 0.3em 0.1em 0.8em;
     text-align: center;
     margin: 0;
     width: 100%;
 }
 
-h2, h3 {
+h2,
+h3 {
     color: white;
     margin: 0;
-    
+
     font-family: "Dancing Script", cursive;
     text-shadow: 3px 3px 3px #25180977;
 }
@@ -71,9 +76,10 @@ h2 {
 }
 
 h3 {
-    font-size: 1.5rem;  
+    font-size: 1.5rem;
     cursor: pointer;
 }
+
 h4 {
     font-size: 1.125rem;
     font-weight: 600;
@@ -120,13 +126,15 @@ h4 {
     max-width: 30px;
     filter: invert(110%);
     opacity: 60%;
-    margin:0;
+    margin: 0;
 }
 
 .search-bar input {
     user-select: all;
-    -moz-user-select: all; /* For Firefox */
-    -webkit-user-select: all; /* For Chrome, Safari, and Opera */
+    -moz-user-select: all;
+    /* For Firefox */
+    -webkit-user-select: all;
+    /* For Chrome, Safari, and Opera */
     border-left: none;
     border-right: 1px solid lightgray;
     border-top: none;
@@ -157,7 +165,7 @@ hr {
     max-width: 960px;
     margin: 0 auto;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "pstr .... title"
         "pstr .... info"
         "pstr .... plot";
@@ -185,8 +193,8 @@ hr {
 
 .film-title-block img {
     width: 1em;
-    margin-left:10px;
-    margin-right:5px;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 .film-title-block p {
@@ -216,7 +224,7 @@ hr {
 }
 
 .watchlist-btn-container img {
-    filter:invert(100%);
+    filter: invert(100%);
     margin-right: 0.25em;
     pointer-events: none;
     width: 19px;
@@ -247,7 +255,7 @@ hr {
     cursor: pointer;
     text-decoration: none;
 }
-  
+
 .film-plot-block a:before {
     content: "...";
     position: absolute;
@@ -255,7 +263,7 @@ hr {
     text-decoration: none;
     color: #000;
 }
-  
+
 /* Pagination */
 footer {
     display: none;
@@ -272,28 +280,26 @@ footer {
 .paginator-next,
 .paginator-back {
     border: none;
-    text-align: center; 
-    cursor: pointer;   
+    text-align: center;
+    cursor: pointer;
     background-color: transparent;
 }
 
 footer .paginator-next,
 footer .paginator-back {
-   font-weight: 900;
-   font-size: x-large;
+    font-weight: 900;
+    font-size: x-large;
 }
 
-/* Don't change display property so that the layout doesn't change */
+/* Don't do display = "none" so that the layout doesn't change */
 .paginator-back:disabled,
 .paginator-next:disabled {
     opacity: 0%;
 }
 
 .paginator-page.current {
-    background-color:#006b70;
+    background-color: #006b70;
     color: whitesmoke;
     padding: .3em .45em .3em .55em;
     border-radius: 50%;
 }
-
-

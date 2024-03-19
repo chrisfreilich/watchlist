@@ -3,6 +3,7 @@ const headerEl = document.getElementById('header')
 const searchBarEl = document.getElementById('search-bar')
 const searchTitleEl = document.getElementById('search-title')
 const searchBtn = document.getElementById('search-btn')
+const resultsEl = document.getElementById('search-results')
 const paginatorEl = document.getElementById('paginator')
 const pgNextBtn = document.getElementById('paginator-next')
 const pgBackBtn = document.getElementById('paginator-back')
@@ -18,6 +19,7 @@ searchBarEl.addEventListener('submit', (e) => {         // Search form submit
     e.preventDefault()
     doSearch(1, "start")})
 paginatorEl.addEventListener('click', handlePaginatorClick) // Paginator action
+resultsEl.addEventListener('click', handleResultsClick)     // Add/Remove from Watchlist
 
 //--- Functions ---/
 function doSearch(page = 1, offsetPage = "none") {
@@ -43,8 +45,9 @@ function processSearchResults(data, page, offsetPage) {
         return
     }
 
-    // The search API only returns essentials of each film, so
-    // another API call is necessary for each movie to get the details of the film 
+    // The search API only returns essentials of each film, so first
+    // create cards for each film. Afterwards, another API call
+    // will be necessary for each movie to get the details of the film 
     let html = ""
     let filmIDs = []
     for (const film of data.Search) {
@@ -53,7 +56,7 @@ function processSearchResults(data, page, offsetPage) {
     }
     document.getElementById('search-results').innerHTML = html
 
-    // Now that we have the HTML elements in place for each film, we can call the API to fill in the data
+    // Now that we have the film-card elements in place for each film, we can call the API to fill in the data
     for (const id of filmIDs) {
         fetch(`https://www.omdbapi.com/?i=${id}&plot=full&apikey=88ae5a67`)
         .then( res => res.json() )
@@ -88,7 +91,7 @@ function processSearchResults(data, page, offsetPage) {
                         <p class="runtime">${data.Runtime}</p>
                         <p class="genre">${data.Genre}</p>
                         <div class="watchlist-btn-container" data-id="${id}">    
-                            <img src="/images/plus-icon.png" alt="Button to Add ${data.Title} to Watchlist" />
+                            <img src="/images/${localStorage.getItem(id) ? "minus" : "plus"}-icon.png" alt="Button to Add ${data.Title} to Watchlist" />
                             <p class="watchlist-btn">Watchlist</p>
                         </div>
                     </div>
@@ -179,5 +182,23 @@ function handlePaginatorClick(e) {
         doSearch(Number(pgPageEls[4].innerHTML) + 1, "next")
     } else {
         return
+    }
+}
+
+function handleResultsClick(e) {
+    if (e.target.classList.contains('watchlist-btn-container')) {
+        let inList = false
+        if (localStorage.getItem(e.target.dataset.id)) {
+            // Remove from watchlist
+            localStorage.removeItem(e.target.dataset.id)
+        } else {
+            // Add to watchlist
+            localStorage.setItem(e.target.dataset.id, e.target.dataset.id)
+            inList = true
+        }
+        e.target.innerHTML = `
+                                <img src="/images/${inList ? "minus" : "plus"}-icon.png" alt="Button to Add or Remove ${e.target.dataset.id} to Watchlist" />
+                                <p class="watchlist-btn">Watchlist</p>
+                            `
     }
 }
