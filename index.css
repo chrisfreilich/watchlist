@@ -303,3 +303,45 @@ footer .paginator-back {
     padding: .3em .45em .3em .55em;
     border-radius: 50%;
 }
+
+@media (max-width: 429px) {
+    h2 {
+        display: none;
+    }
+
+    .header-contents {
+        justify-content: end;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .film-info-block {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        margin: 0;
+    }
+
+    .film-info-block p {
+        margin: 0 7px 0 0;
+    }
+
+    .watchlist-btn-container img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .film-title-block {
+        align-items: end;
+        padding-bottom: 7px;
+    }
+
+    .film-title-block img {
+        width: 0.75em;
+    }
+
+    .film-title-block p {
+        font-size: 0.75em;
+    }
+}
