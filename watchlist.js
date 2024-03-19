@@ -58,9 +58,9 @@ function handleResultsClick(e) {
             // In this case, we need to back up one page
             if (currentPage != 1 && currentPage === Math.ceil(listLength / 10) && listLength % 10 === 1 ){
                 doSearch(currentPage - 1, "back", false)
+            } else {
+                doSearch(currentPage, "none", false)
             }
-
-            doSearch(currentPage, "none", false)
     }
 }
 
