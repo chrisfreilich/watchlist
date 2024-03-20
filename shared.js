@@ -132,14 +132,14 @@ export function renderFilmList(data, page, offsetPage, scroll, noResultText, noR
 
 export function updateShowMoreLinks() {
     for (const plot of document.getElementsByClassName('film-plot-block')) {
-        const link = document.querySelectorAll(`.show-more[data-id=${plot.dataset.id}]`)[0]
-        link.style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
+        const links = document.querySelectorAll(`.show-more[data-id=${plot.dataset.id}]`)
+        if (links) links[0].style.display = plot.clientHeight < plot.scrollHeight ? "inline" : "none"
     }
 }
 
 function revealFullPlot(event) {
     event.preventDefault()
-    event.target.style.display = "none"
+    event.target.remove()
     document.getElementById(event.target.dataset.id).style.gridTemplateRows = "auto auto auto"
 }
 
